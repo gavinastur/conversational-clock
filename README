@@ -1,1 +1,9 @@
-readme - todo
+The Conversational Clock
+========================
+
+The Conversational Clock is a JAVA API that responds with a polite response when asked for the time.
+
+ 00:00 is "midnight"
+ 00:05 is "five past midnight" 
+ 00:01 is "just after midnight" 
+ 23:45 is "a quarter to midnight"
