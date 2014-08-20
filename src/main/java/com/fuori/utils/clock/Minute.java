@@ -1,5 +1,6 @@
 package com.fuori.utils.clock;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -32,6 +33,8 @@ public enum Minute {
     FIFTY("50", "minute.ten.to"),
 
     FIFTY_FIVE("55", "minute.five.to"),
+
+    SIXTY("60", "minute.sixty"),
 
     JUST_AFTER("", "minute.just.after"),
 
@@ -72,9 +75,9 @@ public enum Minute {
     /**
      * @return the label
      */
-    public String getLabel() {
+    public String getLabel(Locale locale) {
 
-        ResourceBundle msgs = ResourceBundle.getBundle("time");
+        ResourceBundle msgs = ResourceBundle.getBundle("time", locale);
         return  msgs.getString(label);
     }
 
