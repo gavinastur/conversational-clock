@@ -1,5 +1,7 @@
 package com.fuori.utils.clock;
 
+import java.util.ResourceBundle;
+
 /**
  * Enum that is Minutes of an hour.
  * 
@@ -7,33 +9,35 @@ package com.fuori.utils.clock;
  */
 public enum Minute {
 
-    FIVE("5", "five past "),
+    ZERO("0", "minute.zero"),
 
-    TEN("10", "ten past "),
+    FIVE("5", "minute.five.past"),
 
-    FIFTEEN("15", "a quater past "),
+    TEN("10", "minute.ten.past"),
 
-    TWENTY("20", "twenty past "),
+    FIFTEEN("15", "minute.quarter.past"),
 
-    TWENTY_FIVE("25", "twenty five past "),
+    TWENTY("20", "minute.twenty.past"),
 
-    THIRTY("30", "half past "),
+    TWENTY_FIVE("25", "minute.twentyfive.past"),
 
-    THIRTY_FIVE("35", "twenty five to "),
+    THIRTY("30", "minute.half.past"),
 
-    FORTY("40", "twenty to "),
+    THIRTY_FIVE("35", "minute.twentyfive.to"),
 
-    FORTY_FIVE("45", "a quater to "),
+    FORTY("40", "minute.twenty.to"),
 
-    FIFTY("50", "ten to "),
+    FORTY_FIVE("45", "minute.quarter.to"),
 
-    FIFTYFIVE("55", "five to "),
+    FIFTY("50", "minute.ten.to"),
 
-    JUST_AFTER("", "just after "),
+    FIFTY_FIVE("55", "minute.five.to"),
 
-    JUST_BEFORE("", "just before "),
+    JUST_AFTER("", "minute.just.after"),
 
-    UNKNOWN("", "");
+    JUST_BEFORE("", "minute.just.before"),
+
+    UNKNOWN("", "minute.unknown");
 
     /**
      * The minute.
@@ -70,7 +74,8 @@ public enum Minute {
      */
     public String getLabel() {
 
-        return label;
+        ResourceBundle msgs = ResourceBundle.getBundle("time");
+        return  msgs.getString(label);
     }
 
     /**

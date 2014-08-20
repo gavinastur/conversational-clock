@@ -1,5 +1,6 @@
 package com.fuori.utils.clock;
 
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
@@ -14,8 +15,6 @@ import java.util.concurrent.TimeUnit;
  * @author gavinastur May 19, 2012 09:34:48 PM
  */
 public final class ConversationalClock {
-
-
 
     /**
      * Method to to get the current time in polite text. e.g. 00:05 is "five past midnight".
@@ -58,7 +57,7 @@ public final class ConversationalClock {
             throw new RuntimeException(hourOfDay + ":" + minute + " is not valid. hourOfDay must be 0-23. minute must be 0-59.");
         }
 
-        StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder();
 
         int mod = minute % 10;
 
@@ -68,14 +67,14 @@ public final class ConversationalClock {
             case 6:
             case 7:
                 // Display the minute where we have just passed an increment of five
-                sb.append(Minute.JUST_AFTER.getLabel()).append(Minute.getMinute(roundToNearest5(minute)).getLabel());
+                sb.append(MessageFormat.format(Minute.JUST_AFTER.getLabel(), Minute.getMinute(roundToNearest5(minute)).getLabel()));
                 break;
             case 3:
             case 4:
             case 8:
             case 9:
                 // Display the minute where we have yet to reach an increment of five
-                sb.append(Minute.JUST_BEFORE.getLabel()).append(Minute.getMinute(roundToNearest5(minute)).getLabel());
+                sb.append(MessageFormat.format(Minute.JUST_BEFORE.getLabel(), Minute.getMinute(roundToNearest5(minute)).getLabel()));
                 break;
             case 0:
             case 5:
@@ -86,20 +85,25 @@ public final class ConversationalClock {
                 break;
         }
 
-        SimpleDateFormat df = new SimpleDateFormat("HH");
+        final String formatted;
+        final SimpleDateFormat df = new SimpleDateFormat("HH");
+        final Calendar calendar = Calendar.getInstance();
 
-        Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
 
         // Display the hour, if we are greater than 37 minutes then increment the hour as the context has changed
         if (minute < 35) {
-            sb.append(Hour.getHour(df.format(calendar.getTime())).getLabel());
+
+            formatted = MessageFormat.format(sb.toString(),Hour.getHour(df.format(calendar.getTime())).getLabel());
+
         } else {
+
             calendar.add(Calendar.HOUR_OF_DAY, 1);
-            sb.append(Hour.getHour(df.format(calendar.getTime())).getLabel());
+            formatted = MessageFormat.format(sb.toString(),Hour.getHour(df.format(calendar.getTime())).getLabel());
+
         }
 
-        return sb.toString();
+        return formatted;
     }
 
     /**
