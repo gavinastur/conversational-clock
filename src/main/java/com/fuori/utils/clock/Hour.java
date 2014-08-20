@@ -1,5 +1,6 @@
 package com.fuori.utils.clock;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -89,9 +90,10 @@ public enum Hour {
     /**
      * @return the hourAsText
      */
-    public String getLabel() {
+    public String getLabel(Locale locale) {
 
-        ResourceBundle msgs = ResourceBundle.getBundle("time");
+        ResourceBundle msgs = ResourceBundle.getBundle("time", locale);
+
         return  msgs.getString(label);
     }
 
