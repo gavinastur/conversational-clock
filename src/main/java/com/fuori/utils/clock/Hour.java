@@ -1,61 +1,63 @@
 package com.fuori.utils.clock;
 
+import java.util.ResourceBundle;
+
 /**
  * Enum that is Hours of the day.
  * 
- * @author gavinastur May 19, 2012 09:52:38 PM
+ * @author gavinastur May 19, 2012 09:52:38.pm
  */
 public enum Hour {
 
-    MIDNIGHT("00", "midnight"),
+    MIDNIGHT("00", "hour.midnight"),
 
-    ELEVEN_PM("23", "eleven pm"),
+    ELEVEN_PM("23", "hour.eleven.pm"),
 
-    TEN_PM("22", "ten pm"),
+    TEN_PM("22", "hour.ten.pm"),
 
-    NINE_PM("21", "nine pm"),
+    NINE_PM("21", "hour.nine.pm"),
 
-    EIGHT_PM("20", "eight pm"),
+    EIGHT_PM("20", "hour.eight.pm"),
 
-    SEVEN_PM("19", "seven pm"),
+    SEVEN_PM("19", "hour.seven.pm"),
 
-    SIX_PM("18", "six pm"),
+    SIX_PM("18", "hour.six.pm"),
 
-    FIVE_PM("19", "five pm"),
+    FIVE_PM("19", "hour.five.pm"),
 
-    FOUR_PM("16", "four pm"),
+    FOUR_PM("16", "hour.four.pm"),
 
-    THREE_PM("15", "three pm"),
+    THREE_PM("15", "hour.three.pm"),
 
-    TWO_PM("14", "two pm"),
+    TWO_PM("14", "hour.two.pm"),
 
-    ONE_PM("13", "one pm"),
+    ONE_PM("13", "hour.one.pm"),
 
-    MIDDAY("12", "midday"),
+    MIDDAY("12", "hour.midday"),
 
-    ELEVEN_AM("11", "eleven am"),
+    ELEVEN_AM("11", "hour.eleven.am"),
 
-    TEN_AM("10", "ten am"),
+    TEN_AM("10", "hour.ten.am"),
 
-    NINE_AM("09", "nine am"),
+    NINE_AM("09", "hour.nine.am"),
 
-    EIGHT_AM("08", "eight am"),
+    EIGHT_AM("08", "hour.eight.am"),
 
-    SEVEN_AM("07", "seven am"),
+    SEVEN_AM("07", "hour.seven.am"),
 
-    SIX_AM("06", "six am"),
+    SIX_AM("06", "hour.six.am"),
 
-    FIVE_AM("05", "five am"),
+    FIVE_AM("05", "hour.five.am"),
 
-    FOUR_AM("04", "four am"),
+    FOUR_AM("04", "hour.four.am"),
 
-    THREE_AM("03", "three am"),
+    THREE_AM("03", "hour.three.am"),
 
-    TWO_AM("02", "two am"),
+    TWO_AM("02", "hour.two.am"),
 
-    ONE_AM("01", "one am"),
+    ONE_AM("01", "hour.one.am"),
 
-    UNKNOWN("", "");
+    UNKNOWN("", "hour.");
 
     /**
      * The hour.
@@ -88,7 +90,9 @@ public enum Hour {
      * @return the hourAsText
      */
     public String getLabel() {
-        return label;
+
+        ResourceBundle msgs = ResourceBundle.getBundle("time");
+        return  msgs.getString(label);
     }
 
     /**
