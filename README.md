@@ -7,7 +7,7 @@ The Conversational Clock is a TypeScript library that responds with a polite res
     00:05 is "five past midnight"
     23:45 is "quarter to midnight"
 
-Requires Node.js 26 or later.
+Requires Node.js 26 LTS.
 
 ## Usage
 
