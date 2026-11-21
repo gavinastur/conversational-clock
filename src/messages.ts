@@ -15,7 +15,7 @@ const bundles: Readonly<Record<string, Messages>> = {
  * the full tag ("it-IT"), then the language ("it"), then the default.
  * Invalid or unsupported tags fall back to the default.
  */
-function resolveBundle(locale: string): Messages {
+const resolveBundle = (locale: string): Messages => {
   let parsed: Intl.Locale;
   try {
     parsed = new Intl.Locale(locale);
@@ -23,14 +23,14 @@ function resolveBundle(locale: string): Messages {
     return en;
   }
   return bundles[parsed.baseName] ?? bundles[parsed.language] ?? en;
-}
+};
 
 /** Looks up a message by key in the closest bundle for a locale. */
-export function getMessage(key: MessageKey, locale: string): string {
+export const getMessage = (key: MessageKey, locale: string): string => {
   return resolveBundle(locale)[key];
-}
+};
 
 /** Replaces the {0} placeholder, as Java's MessageFormat.format does for these templates. */
-export function format(template: string, argument: string): string {
+export const format = (template: string, argument: string): string => {
   return template.replaceAll('{0}', argument);
-}
+};

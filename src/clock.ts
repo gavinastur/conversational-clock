@@ -20,9 +20,9 @@ const MS_PER_HOUR = 60 * MS_PER_MINUTE;
  * @param locale BCP 47 language tag, e.g. "it-IT". Defaults to English.
  * @param now the moment to describe. Defaults to now.
  */
-export function getCurrentTime(locale: string = DEFAULT_LOCALE, now: Date = new Date()): string {
+export const getCurrentTime = (locale: string = DEFAULT_LOCALE, now: Date = new Date()): string => {
   return getTime(now.getHours(), now.getMinutes(), locale);
-}
+};
 
 /**
  * Gets the time of day for a timestamp as polite text, e.g. "five past midnight".
@@ -31,11 +31,11 @@ export function getCurrentTime(locale: string = DEFAULT_LOCALE, now: Date = new 
  * @param milliseconds milliseconds since the Unix epoch
  * @param locale BCP 47 language tag, e.g. "it-IT". Defaults to English.
  */
-export function getTimeFromMillis(milliseconds: number, locale: string = DEFAULT_LOCALE): string {
+export const getTimeFromMillis = (milliseconds: number, locale: string = DEFAULT_LOCALE): string => {
   const minute = Math.trunc(milliseconds / MS_PER_MINUTE) % 60;
   const hour = Math.trunc(milliseconds / MS_PER_HOUR) % 24;
   return getTime(hour, minute, locale);
-}
+};
 
 /**
  * Gets a time of day as polite text, e.g. "five past midnight".
@@ -45,7 +45,7 @@ export function getTimeFromMillis(milliseconds: number, locale: string = DEFAULT
  * @param locale BCP 47 language tag, e.g. "it-IT". Defaults to English.
  * @throws RangeError if the hour or minute is out of range or not a whole number
  */
-export function getTime(hourOfDay: number, minute: number, locale: string = DEFAULT_LOCALE): string {
+export const getTime = (hourOfDay: number, minute: number, locale: string = DEFAULT_LOCALE): string => {
   if (!Number.isInteger(hourOfDay) || !Number.isInteger(minute) || hourOfDay > 23 || hourOfDay < 0 || minute > 59 || minute < 0) {
     throw new RangeError(`${hourOfDay}:${minute} is not valid. hourOfDay must be 0-23. minute must be 0-59.`);
   }
@@ -80,13 +80,13 @@ export function getTime(hourOfDay: number, minute: number, locale: string = DEFA
   const hour = roundedMinute < 35 ? hourOfDay : (hourOfDay + 1) % 24;
 
   return format(template, message(getHourKey(hour)));
-}
+};
 
 /**
  * Rounds a minute to the nearest multiple of five, rounding halves up.
  *
  * @param minute number to be rounded
  */
-export function roundToNearest5(minute: number): number {
+export const roundToNearest5 = (minute: number): number => {
   return Math.floor((minute + 2) / 5) * 5;
-}
+};

@@ -33,10 +33,10 @@ const HOUR_KEYS = [
  *
  * @throws RangeError if the hour isn't a whole number from 0 to 23
  */
-export function getHourKey(hour: number): MessageKey {
+export const getHourKey = (hour: number): MessageKey => {
   const key = HOUR_KEYS[hour];
   if (key === undefined) {
     throw new RangeError(`No message for hour ${hour}. hour must be 0-23.`);
   }
   return key;
-}
+};
