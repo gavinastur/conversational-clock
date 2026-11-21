@@ -33,7 +33,8 @@ npm start -- it-IT     # every minute of the current hour, in Italian
 
 ```sh
 npm install
-npm test           # run the tests
-npm run build      # type-check
-npm run lint       # format and lint with Biome
+npm test               # run the tests
+npm run test:coverage  # run the tests with a coverage report (fails below 100%)
+npm run build          # type-check
+npm run lint           # format and lint with Biome
 ```

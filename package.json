@@ -12,6 +12,7 @@
     "lint": "npm run biome:check:fix",
     "biome:check:fix": "biome check --write .",
     "test": "node --test \"**/*.test.ts\"",
+    "test:coverage": "node --test --experimental-test-coverage --test-coverage-lines=100 --test-coverage-branches=100 --test-coverage-functions=100 \"**/*.test.ts\"",
     "tsc": "tsc"
   },
   "devDependencies": {
