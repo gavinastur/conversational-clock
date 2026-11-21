@@ -45,17 +45,8 @@ export function getTimeFromMillis(milliseconds: number, locale: string = DEFAULT
  * @throws RangeError if the hour or minute is out of range or not a whole number
  */
 export function getTime(hourOfDay: number, minute: number, locale: string = DEFAULT_LOCALE): string {
-  if (
-    !Number.isInteger(hourOfDay) ||
-    !Number.isInteger(minute) ||
-    hourOfDay > 23 ||
-    hourOfDay < 0 ||
-    minute > 59 ||
-    minute < 0
-  ) {
-    throw new RangeError(
-      `${hourOfDay}:${minute} is not valid. hourOfDay must be 0-23. minute must be 0-59.`,
-    );
+  if (!Number.isInteger(hourOfDay) || !Number.isInteger(minute) || hourOfDay > 23 || hourOfDay < 0 || minute > 59 || minute < 0) {
+    throw new RangeError(`${hourOfDay}:${minute} is not valid. hourOfDay must be 0-23. minute must be 0-59.`);
   }
 
   const message = (key: string): string => getMessage(key, locale);
