@@ -64,6 +64,18 @@ describe('bug fixes', () => {
   test('01:00 is "one am"', () => {
     assert.equal(getTime(1, 0), 'one am');
   });
+
+  test('00:33 is "just before twenty five to one am"', () => {
+    assert.equal(getTime(0, 33), 'just before twenty five to one am');
+  });
+
+  test('23:34 is "just before twenty five to midnight"', () => {
+    assert.equal(getTime(23, 34), 'just before twenty five to midnight');
+  });
+
+  test('00:32 still names the current hour', () => {
+    assert.equal(getTime(0, 32), 'just after half past midnight');
+  });
 });
 
 describe('getTimeFromMillis', () => {

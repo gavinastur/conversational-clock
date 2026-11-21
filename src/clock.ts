@@ -50,7 +50,8 @@ export function getTime(hourOfDay: number, minute: number, locale: string = DEFA
   }
 
   const message = (key: string): string => getMessage(key, locale);
-  const nearestFive = message(getMinuteKey(roundToNearest5(minute)));
+  const roundedMinute = roundToNearest5(minute);
+  const nearestFive = message(getMinuteKey(roundedMinute));
 
   let template: string;
   switch (minute % 10) {
@@ -74,8 +75,8 @@ export function getTime(hourOfDay: number, minute: number, locale: string = DEFA
       break;
   }
 
-  // From 35 minutes past, describe the time relative to the next hour ("twenty five to ...")
-  const hour = minute < 35 ? hourOfDay : (hourOfDay + 1) % 24;
+  // From (just before) twenty five to, describe the time relative to the next hour
+  const hour = roundedMinute < 35 ? hourOfDay : (hourOfDay + 1) % 24;
 
   return format(template, message(getHourKey(String(hour).padStart(2, '0'))));
 }
