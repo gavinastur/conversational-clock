@@ -1,0 +1,28 @@
+{
+  "name": "conversational-clock",
+  "version": "0.0.1",
+  "description": "Tells the time the way people say it, e.g. \"just after half past seven am\".",
+  "author": "Gavin Astur",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "npm run tsc",
+    "start": "tsx src/cli.ts",
+    "lint": "npm run biome:check:fix",
+    "biome:check:fix": "biome check --write .",
+    "test": "node --test \"**/*.test.ts\"",
+    "test:coverage": "node --test --experimental-test-coverage --test-coverage-lines=100 --test-coverage-branches=100 --test-coverage-functions=100 \"**/*.test.ts\"",
+    "tsc": "tsc"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.6.8",
+    "@types/node": "26.6.6",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2"
+  },
+  "engines": {
+    "node": "^26.0.0",
+    "npm": "^11.0.0"
+  }
+}
