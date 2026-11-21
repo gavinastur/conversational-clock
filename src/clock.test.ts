@@ -78,6 +78,52 @@ describe('bug fixes', () => {
   });
 });
 
+describe('every minute of the day', () => {
+  const HOUR_NAMES = [
+    'midnight',
+    'one am',
+    'two am',
+    'three am',
+    'four am',
+    'five am',
+    'six am',
+    'seven am',
+    'eight am',
+    'nine am',
+    'ten am',
+    'eleven am',
+    'midday',
+    'one pm',
+    'two pm',
+    'three pm',
+    'four pm',
+    'five pm',
+    'six pm',
+    'seven pm',
+    'eight pm',
+    'nine pm',
+    'ten pm',
+    'eleven pm',
+  ];
+
+  test('names each hour correctly on the hour', () => {
+    HOUR_NAMES.forEach((name, hour) => {
+      assert.equal(getTime(hour, 0), name);
+    });
+  });
+
+  test('ends with the current hour up to xx:32 and the next hour from xx:33', () => {
+    for (let hour = 0; hour < 24; hour++) {
+      for (let minute = 0; minute < 60; minute++) {
+        const expectedHour = minute < 33 ? hour : (hour + 1) % 24;
+        const text = getTime(hour, minute);
+        assert.ok(text.endsWith(` ${HOUR_NAMES[expectedHour]}`) || text === HOUR_NAMES[expectedHour], `${hour}:${minute} gave "${text}"`);
+        assert.doesNotMatch(text, /[{}]|undefined/, `${hour}:${minute} gave "${text}"`);
+      }
+    }
+  });
+});
+
 describe('getTimeFromMillis', () => {
   test('works out the time of day in UTC', () => {
     // 2014-07-18T07:29:35.844Z
