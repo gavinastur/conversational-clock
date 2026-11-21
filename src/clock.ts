@@ -7,6 +7,7 @@
  */
 
 import { getHourKey } from './hour.ts';
+import type { MessageKey } from './locales/en.ts';
 import { DEFAULT_LOCALE, format, getMessage } from './messages.ts';
 import { getMinuteKey, JUST_AFTER, JUST_BEFORE } from './minute.ts';
 
@@ -49,7 +50,7 @@ export function getTime(hourOfDay: number, minute: number, locale: string = DEFA
     throw new RangeError(`${hourOfDay}:${minute} is not valid. hourOfDay must be 0-23. minute must be 0-59.`);
   }
 
-  const message = (key: string): string => getMessage(key, locale);
+  const message = (key: MessageKey): string => getMessage(key, locale);
   const roundedMinute = roundToNearest5(minute);
   const nearestFive = message(getMinuteKey(roundedMinute));
 
@@ -78,7 +79,7 @@ export function getTime(hourOfDay: number, minute: number, locale: string = DEFA
   // From (just before) twenty five to, describe the time relative to the next hour
   const hour = roundedMinute < 35 ? hourOfDay : (hourOfDay + 1) % 24;
 
-  return format(template, message(getHourKey(String(hour).padStart(2, '0'))));
+  return format(template, message(getHourKey(hour)));
 }
 
 /**

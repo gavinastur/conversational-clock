@@ -1,39 +1,42 @@
 import type { MessageKey } from './locales/en.ts';
 
+/** Message key for each hour of the day, indexed 0-23. */
+const HOUR_KEYS = [
+  'hour.midnight',
+  'hour.one.am',
+  'hour.two.am',
+  'hour.three.am',
+  'hour.four.am',
+  'hour.five.am',
+  'hour.six.am',
+  'hour.seven.am',
+  'hour.eight.am',
+  'hour.nine.am',
+  'hour.ten.am',
+  'hour.eleven.am',
+  'hour.midday',
+  'hour.one.pm',
+  'hour.two.pm',
+  'hour.three.pm',
+  'hour.four.pm',
+  'hour.five.pm',
+  'hour.six.pm',
+  'hour.seven.pm',
+  'hour.eight.pm',
+  'hour.nine.pm',
+  'hour.ten.pm',
+  'hour.eleven.pm',
+] as const satisfies readonly MessageKey[];
+
 /**
- * Two-digit hour of the day ("00"-"23") mapped to its message key.
- * Ported as-is from the Java Hour enum.
+ * Returns the message key for an hour of the day.
+ *
+ * @throws RangeError if the hour isn't a whole number from 0 to 23
  */
-const HOURS: ReadonlyArray<readonly [hh: string, key: MessageKey]> = [
-  ['00', 'hour.midnight'],
-  ['23', 'hour.eleven.pm'],
-  ['22', 'hour.ten.pm'],
-  ['21', 'hour.nine.pm'],
-  ['20', 'hour.eight.pm'],
-  ['19', 'hour.seven.pm'],
-  ['18', 'hour.six.pm'],
-  ['17', 'hour.five.pm'],
-  ['16', 'hour.four.pm'],
-  ['15', 'hour.three.pm'],
-  ['14', 'hour.two.pm'],
-  ['13', 'hour.one.pm'],
-  ['12', 'hour.midday'],
-  ['11', 'hour.eleven.am'],
-  ['10', 'hour.ten.am'],
-  ['09', 'hour.nine.am'],
-  ['08', 'hour.eight.am'],
-  ['07', 'hour.seven.am'],
-  ['06', 'hour.six.am'],
-  ['05', 'hour.five.am'],
-  ['04', 'hour.four.am'],
-  ['03', 'hour.three.am'],
-  ['02', 'hour.two.am'],
-  ['01', 'hour.one.am'],
-];
-
-const UNKNOWN_HOUR = 'hour.';
-
-/** Returns the message key for a two-digit hour, or "hour." if there's no match. */
-export function getHourKey(hh: string): string {
-  return HOURS.find(([hour]) => hour === hh)?.[1] ?? UNKNOWN_HOUR;
+export function getHourKey(hour: number): MessageKey {
+  const key = HOUR_KEYS[hour];
+  if (key === undefined) {
+    throw new RangeError(`No message for hour ${hour}. hour must be 0-23.`);
+  }
+  return key;
 }

@@ -41,7 +41,6 @@ export const en = {
   'minute.five.to': 'five to {0}',
   'minute.just.after': 'just after {0}',
   'minute.just.before': 'just before {0}',
-  'minute.unknown': '',
 } as const;
 
 export type MessageKey = keyof typeof en;

@@ -43,5 +43,4 @@ export const itIT: Messages = {
   'minute.five.to': '(IT)five to {0}',
   'minute.just.after': '(IT)just after {0}',
   'minute.just.before': '(IT)just before {0}',
-  'minute.unknown': '',
 };

@@ -154,10 +154,19 @@ describe('locales', () => {
     assert.equal(getTime(8, 5, 'de-DE'), 'five past eight am');
     assert.equal(getTime(8, 5, 'not a locale'), 'five past eight am');
   });
+
+  test('uses the language when there is no regional bundle', () => {
+    assert.equal(getTime(8, 5, 'en-GB'), 'five past eight am');
+  });
 });
 
 describe('getCurrentTime', () => {
   test('describes the given moment in local time', () => {
     assert.equal(getCurrentTime('en', new Date(2026, 0, 1, 8, 5)), 'five past eight am');
+  });
+
+  test('defaults to English and the current time', (t) => {
+    t.mock.timers.enable({ apis: ['Date'], now: new Date(2026, 0, 1, 17, 0) });
+    assert.equal(getCurrentTime(), 'five pm');
   });
 });

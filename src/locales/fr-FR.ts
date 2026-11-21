@@ -43,5 +43,4 @@ export const frFR: Messages = {
   'minute.five.to': '(FR)five to {0}',
   'minute.just.after': '(FR)just after {0}',
   'minute.just.before': '(FR)just before {0}',
-  'minute.unknown': '',
 };

@@ -16,35 +16,18 @@ const bundles: Readonly<Record<string, Messages>> = {
  * Invalid or unsupported tags fall back to the default.
  */
 function resolveBundle(locale: string): Messages {
-  let canonical: string | undefined;
+  let parsed: Intl.Locale;
   try {
-    canonical = Intl.getCanonicalLocales(locale)[0];
+    parsed = new Intl.Locale(locale);
   } catch {
-    canonical = undefined;
+    return en;
   }
-
-  if (canonical !== undefined) {
-    const language = canonical.split('-')[0] ?? canonical;
-    for (const candidate of [canonical, language]) {
-      const bundle = bundles[candidate];
-      if (bundle !== undefined) {
-        return bundle;
-      }
-    }
-  }
-  return en;
+  return bundles[parsed.baseName] ?? bundles[parsed.language] ?? en;
 }
 
-/**
- * Looks up a message by key. Throws if the key doesn't exist, as Java's
- * ResourceBundle.getString does.
- */
-export function getMessage(key: string, locale: string): string {
-  const bundle = resolveBundle(locale);
-  if (!Object.hasOwn(bundle, key)) {
-    throw new Error(`Can't find message for key "${key}"`);
-  }
-  return bundle[key as MessageKey];
+/** Looks up a message by key in the closest bundle for a locale. */
+export function getMessage(key: MessageKey, locale: string): string {
+  return resolveBundle(locale)[key];
 }
 
 /** Replaces the {0} placeholder, as Java's MessageFormat.format does for these templates. */
