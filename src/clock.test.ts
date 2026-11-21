@@ -52,6 +52,16 @@ describe('getTime', () => {
   });
 });
 
+describe('bug fixes', () => {
+  test('17:00 is "five pm"', () => {
+    assert.equal(getTime(17, 0), 'five pm');
+  });
+
+  test('16:40 is "twenty to five pm"', () => {
+    assert.equal(getTime(16, 40), 'twenty to five pm');
+  });
+});
+
 describe('getTimeFromMillis', () => {
   test('works out the time of day in UTC', () => {
     // 2014-07-18T07:29:35.844Z

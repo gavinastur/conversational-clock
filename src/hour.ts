@@ -12,7 +12,7 @@ const HOURS: ReadonlyArray<readonly [hh: string, key: MessageKey]> = [
   ['20', 'hour.eight.pm'],
   ['19', 'hour.seven.pm'],
   ['18', 'hour.six.pm'],
-  ['19', 'hour.five.pm'],
+  ['17', 'hour.five.pm'],
   ['16', 'hour.four.pm'],
   ['15', 'hour.three.pm'],
   ['14', 'hour.two.pm'],
