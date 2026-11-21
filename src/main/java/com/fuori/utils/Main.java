@@ -40,16 +40,4 @@ public class Main {
         }
 
     }
-
-    /**
-     * @param time - time in seconds that you'd like to pause for
-     */
-    private static void pause(final int time) {
-        try {
-            System.out.println("Sleeping for " + time + "s");
-            Thread.sleep(time * 1000);
-        } catch (InterruptedException ie) {
-            System.out.println("InterruptedException" + ie);
-        }
-    }
 }
