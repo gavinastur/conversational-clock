@@ -18,7 +18,10 @@ public class Main {
     }
 
     /**
-     * @param arguments Sting Array of parameters
+     * With no arguments, prints the current time in English. With a language tag argument
+     * (e.g. "it-IT", "fr-FR"), prints every minute of the current hour in that locale.
+     *
+     * @param arguments optional language tag as the first element
      */
     public static void main(final String[] arguments) {
 
@@ -29,12 +32,13 @@ public class Main {
 
         } else {
 
+            Locale locale = Locale.forLanguageTag(arguments[0]);
             Calendar now = Calendar.getInstance();
             int hour = now.get(Calendar.HOUR_OF_DAY);
 
             for (int minute = 0; minute < 60; minute++) {
 
-                System.out.println(hour + ":" + String.format("%02d", minute) + " " + ConversationalClock.getTime(hour, minute, Locale.ITALY));
+                System.out.println(hour + ":" + String.format("%02d", minute) + " " + ConversationalClock.getTime(hour, minute, locale));
             }
 
         }
