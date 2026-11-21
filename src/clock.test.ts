@@ -60,6 +60,10 @@ describe('bug fixes', () => {
   test('16:40 is "twenty to five pm"', () => {
     assert.equal(getTime(16, 40), 'twenty to five pm');
   });
+
+  test('01:00 is "one am"', () => {
+    assert.equal(getTime(1, 0), 'one am');
+  });
 });
 
 describe('getTimeFromMillis', () => {

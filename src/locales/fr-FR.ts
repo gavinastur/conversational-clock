@@ -25,7 +25,7 @@ export const frFR: Messages = {
   'hour.four.am': 'four am',
   'hour.three.am': 'three am',
   'hour.two.am': 'two am',
-  'hour.one.am': 'one pm',
+  'hour.one.am': 'one am',
 
   // Minutes
   'minute.zero': '{0}',
