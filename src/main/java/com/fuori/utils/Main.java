@@ -28,7 +28,7 @@ public class Main {
         // Default to displaying the current time
         if (arguments.length == 0) {
 
-            System.out.println(ConversationalClock.getTime(System.currentTimeMillis()));
+            System.out.println(ConversationalClock.getCurrentTime(Locale.ENGLISH));
 
         } else {
 
